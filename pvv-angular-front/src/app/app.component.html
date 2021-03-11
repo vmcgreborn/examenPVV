@@ -1,0 +1,15 @@
+<div>
+  <form [formGroup]="myFormGroup">
+    <mat-form-field class="example-full-width">
+      <mat-label>Value A:</mat-label>
+      <input matInput placeholder="" formControlName="a">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-label>Value B:</mat-label>
+      <input matInput placeholder="" formControlName="b">
+    </mat-form-field>
+    <button mat-button color="primary" (click)="getSum()" type="button">Primary</button>
+  </form>
+  Result is {{ result }}
+</div>
+<router-outlet></router-outlet>

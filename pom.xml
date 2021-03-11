@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.pvv.app</groupId>
+	<artifactId>pvv-web</artifactId>
+
+	<version>1.0.0</version>
+
+	<packaging>pom</packaging>
+	<name>pvv Web</name>
+	<description>microservice-archetype</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.7.RELEASE</version>
+	</parent>
+
+	<properties>
+		<spring.boot.version>1.5.7.RELEASE</spring.boot.version>
+		<project.encoding>UTF-8</project.encoding>
+
+
+		
+		
+		<!-- Version of archetype -->
+		<spring.version>4.3.11.RELEASE</spring.version>
+		<jetty.version>9.0.7.v20131107</jetty.version> <!-- Adapt this to a version found on http://repo.maven.apache.org/maven2/org/eclipse/jetty/jetty-maven-plugin/ -->
+		<logback.version>1.1.1</logback.version>
+		<jcloverslf4j.version>1.7.6</jcloverslf4j.version>
+
+		<!-- Apache -->
+		<apache.beanutils.version>1.9.1</apache.beanutils.version>
+
+		<!-- JUnit Version -->
+		<junit.version>4.12</junit.version>
+
+		<!-- Java EE version -->
+		<java-ee.version>6.0</java-ee.version>
+		<java.ver>1.8</java.ver>
+
+		<!-- Jacoco, Sonar unit test -->
+		<jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
+
+		<!-- Dozer Version -->
+		<dozer.version>5.5.1</dozer.version>
+
+
+
+
+		<!-- Librerias Apache -->
+		<commons-lang.version>2.6</commons-lang.version>
+
+		<!-- Plugins -->
+		<maven-ejb-plugin.version>2.0</maven-ejb-plugin.version>
+		<maven-war-plugin.version>2.1.1</maven-war-plugin.version>
+		<maven-ear-plugin.version>2.8</maven-ear-plugin.version>
+		<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+		<maven-deploy-plugin.version>2.8.1</maven-deploy-plugin.version>
+
+		<!-- Mocks -->
+		<mockito.version>1.10.19</mockito.version>
+		<!-- Eclipselink -->
+		<eclipselink.version>2.5.0</eclipselink.version>
+
+
+		<jmockit.version>1.18</jmockit.version><!-- 1.18 -->
+
+
+	</properties>
+
+
+
+	<dependencyManagement>
+
+
+		<dependencies>
+
+			
+			<!-- Java EE -->
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>6.0</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- Local Dependencies -->
+
+
+
+
+			<dependency>
+				<groupId>com.pvv.app</groupId>
+				<artifactId>pvv-web-model</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.pvv.app</groupId>
+				<artifactId>pvv-web-persistence</artifactId>
+				<type>jar</type>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.pvv.app</groupId>
+				<artifactId>pvv-web-services</artifactId>
+				<type>jar</type>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.pvv.app</groupId>
+				<artifactId>pvv-web-services-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.pvv.app</groupId>
+				<artifactId>pvv-web-rest</artifactId>
+				<type>war</type>
+				<version>${project.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<version>${spring.boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.tomcat</groupId>
+				<artifactId>tomcat-dbcp</artifactId>
+				<version>${tomcat.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<version>${spring.boot.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+
+
+			<!-- Unit Testing -->
+			<!-- Mockito -->
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-core</artifactId>
+				<version>${mockito.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- Eclipselink, especificado para pruebas unitarias -->
+			<dependency>
+				<groupId>org.eclipse.persistence</groupId>
+				<artifactId>eclipselink</artifactId>
+				<version>${eclipselink.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<!-- Apache Collections -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>${commons-lang.version}</version>
+			</dependency>
+			<!-- JUnit -->
+			<dependency>
+				<groupId>org.jmockit</groupId>
+				<artifactId>jmockit</artifactId>
+				<version>${jmockit.version}</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+
+	<build>
+
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
+
+
+
+		<pluginManagement>
+			<plugins>
+
+
+				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-resources-plugin</artifactId>
+					<version>3.1.0</version>
+					<configuration>
+						<nonFilteredFileExtensions>
+
+							<nonFilteredFileExtension>jpg</nonFilteredFileExtension>
+							<nonFilteredFileExtension>jasper</nonFilteredFileExtension>
+							<nonFilteredFileExtension>jrxml</nonFilteredFileExtension>
+						</nonFilteredFileExtensions>
+					</configuration>
+				</plugin>
+
+
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.ver}</source>
+					<target>${java.ver}</target>
+				</configuration>
+			</plugin>
+
+
+
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<configuration>
+					<skip>false</skip>
+				</configuration>
+			</plugin>
+
+
+
+
+		</plugins>
+	</build>
+
+
+	<modules>
+
+		<module>pvv-web-model</module>
+		<module>pvv-web-persistence</module>
+		<module>pvv-web-services-api</module>
+		<module>pvv-web-services</module>
+		<module>pvv-web-rest</module>
+
+	</modules>
+</project>
